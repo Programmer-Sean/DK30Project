@@ -2,6 +2,8 @@
   int red = 0;
   int green = 0;
   int blue = 0;
+  
+  int typeSelected = -1;
 
 void setup()
 {
@@ -22,8 +24,63 @@ void draw()
   //fill after return is 0
   getSliderValues();
   
+  
+  fill(red,green,blue);
+  rect(650,550,300,300);
+  
   text("Your Current Color is: " + red + "  "+ green + "  " + blue,600,500);
   
+  //Type of Light displays
+  createTypeArea();
+  
+  
+}
+
+//Makeing box on right side of screen to allow different types of lights designs to be created
+void createTypeArea()
+{
+  //Creating Offsets
+  int offsetx = 1200;
+  int offsety = 300;
+  //fill(0);
+  noFill();
+  rect(offsetx,offsety,600,600);
+  
+  if(typeSelected == 1)
+  {
+    fill(0);
+    rect(offsetx+50,offsety+25,100,100,90,90,90,90);
+  }
+  
+  //Creating Radio Buttons and text
+  noFill();
+  rect(offsetx+50,offsety+25,100,100,90,90,90,90); text("Pulse",offsetx+250,offsety+75);
+  rect(offsetx+50,offsety+175,100,100,90,90,90,90); text("Breathing",offsetx+250,offsety+225);
+  rect(offsetx+50,offsety+325,100,100,90,90,90,90); text("Static",offsetx+250,offsety+375);
+  rect(offsetx+50,offsety+475,100,100,90,90,90,90); text("Rainbow",offsetx+250,offsety+525);
+  //
+  
+  //if(mouseX >= offsetx+50 && mouseX <= offsetx+150 )
+  //{
+    
+  //  if(mouseY >= offsety+25 && mouseY <= offsety+125)
+  //  {
+  //    //fill(0);
+  //    //rect(offsetx+50,offsety+25,100,100,90,90,90,90);
+  //    typeSelected = 1;
+  //  }
+  //}
+  
+  if((mouseX - offsetx)% 150 >= 0 )
+  {
+    
+    if(mouseY >= offsety+25 && mouseY <= offsety+125)
+    {
+      //fill(0);
+      //rect(offsetx+50,offsety+25,100,100,90,90,90,90);
+      typeSelected = 1;
+    }
+  }
 }
 
 void getSliderValues()
